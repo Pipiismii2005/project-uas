@@ -1,133 +1,153 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sistem Manajemen Dealer Motor</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 40px;
-      background-color: #f9f9f9;
-      color: #333;
-    }
-    h1, h2, h3 {
-      color: #2c3e50;
-    }
-    .author {
-      margin-top: 20px;
-      font-size: 16px;
-    }
-    .section {
-      margin-top: 30px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-    }
-    table, th, td {
-      border: 1px solid #aaa;
-    }
-    th, td {
-      padding: 8px;
-      text-align: left;
-    }
-    ul {
-      margin-top: 5px;
-    }
-    code {
-      background-color: #eee;
-      padding: 2px 4px;
-      border-radius: 4px;
-      font-family: monospace;
-    }
-  </style>
-</head>
-<body>
+# Sistem Manajemen Dealer Motor
 
-  <h1>Sistem Manajemen Dealer Motor</h1>
+---
+<p align="center">
+  <img src="public/images/logo-unsulbar.png" alt="Logo Unsulbar" width="150"/>
+</p>
 
-  <div class="author">
-    <strong>PIPI</strong><br>
-    D0223307<br>
-    Mata Kuliah: Framework Web Based<br>
-    Tahun: 2025
-  </div>
+**PIPI**  
+D0223307  
 
-  <div class="section">
-    <h2>Deskripsi Umum</h2>
-    <p>
-      Aplikasi berbasis web untuk mengelola operasional dealer motor, seperti stok, transaksi, dan manajemen pengguna.
-    </p>
-    <h3>Role Pengguna</h3>
-    <ul>
-      <li><strong>Admin:</strong> Kelola data user, motor, transaksi, dan laporan.</li>
-      <li><strong>Sales:</strong> Input data customer, transaksi penjualan, dan stok motor.</li>
-      <li><strong>Customer:</strong> Lihat katalog, ajukan pembelian, dan pantau transaksi.</li>
-    </ul>
-  </div>
+**Mata Kuliah Framework Web Based**  
+Tahun 2025  
 
-  <div class="section">
-    <h2>Fitur Utama</h2>
-    <ul>
-      <li>Autentikasi Pengguna</li>
-      <li>Pengelolaan Produk</li>
-      <li>Pemesanan dan Pembelian Produk</li>
-      <li>Manajemen Role Akses</li>
-      <li>Pencarian Produk</li>
-      <li>Laporan Penjualan</li>
-    </ul>
-  </div>
+---
 
-  <div class="section">
-    <h2>Struktur Tabel Database</h2>
+## Deskripsi
 
-    <h3>A. Tabel Users</h3>
-    <table>
-      <tr><th>Field</th><th>Tipe Data</th><th>Deskripsi</th></tr>
-      <tr><td>id</td><td>BIGINT (Auto Increment)</td><td>Primary key</td></tr>
-      <tr><td>name</td><td>VARCHAR(255)</td><td>Nama pengguna</td></tr>
-      <tr><td>email</td><td>VARCHAR(255)</td><td>Email unik</td></tr>
-      <tr><td>phone</td><td>VARCHAR(20)</td><td>Nomor HP</td></tr>
-      <tr><td>address</td><td>TEXT</td><td>Alamat</td></tr>
-      <tr><td>password</td><td>VARCHAR(255)</td><td>Password terenkripsi</td></tr>
-      <tr><td>role</td><td>ENUM</td><td>admin, sales, customer</td></tr>
-      <tr><td>remember_token</td><td>VARCHAR(100)</td><td>Token remember me</td></tr>
-      <tr><td>created_at</td><td>TIMESTAMP</td><td>Waktu dibuat</td></tr>
-      <tr><td>updated_at</td><td>TIMESTAMP</td><td>Waktu diubah</td></tr>
-    </table>
+**Sistem Manajemen Dealer Motor** adalah aplikasi berbasis web yang dirancang untuk mengelola seluruh proses operasional dealer motor — dari pencatatan stok motor, transaksi penjualan, hingga manajemen pelayanan dan karyawan. Sistem ini mendukung tiga jenis role pengguna:
 
-    <h3>B. Tabel Motorcycles</h3>
-    <table>
-      <tr><th>Field</th><th>Tipe Data</th><th>Deskripsi</th></tr>
-      <tr><td>id</td><td>BIGINT</td><td>Primary key</td></tr>
-      <tr><td>merk</td><td>VARCHAR(100)</td><td>Merk motor</td></tr>
-      <tr><td>tipe</td><td>VARCHAR(100)</td><td>Model motor</td></tr>
-      <tr><td>tahun</td><td>YEAR</td><td>Tahun produksi</td></tr>
-      <tr><td>warna</td><td>INT</td><td>Jumlah stok warna</td></tr>
-      <tr><td>harga</td><td>DECIMAL(12,2)</td><td>Harga motor</td></tr>
-      <tr><td>stok</td><td>INTEGER</td><td>Jumlah stok</td></tr>
-      <tr><td>deskripsi</td><td>TEXT</td><td>Deskripsi opsional</td></tr>
-      <tr><td>created_at</td><td>TIMESTAMP</td><td>Tanggal dibuat</td></tr>
-      <tr><td>updated_at</td><td>TIMESTAMP</td><td>Tanggal diperbarui</td></tr>
-    </table>
+1. **Admin**: Kelola data user, motor, dan transaksi, konfirmasi transaksi, lihat semua data dan laporan.  
+2. **Sales**: Input data customer, buat dan kelola transaksi penjualan, lihat stok motor dan riwayat penjualannya.  
+3. **Customer**: Lihat katalog motor, ajukan pembelian, lihat status transaksi.
 
-    <!-- Tambahkan bagian tabel C-F dengan cara serupa jika diperlukan -->
-  </div>
+---
 
-  <div class="section">
-    <h2>Relasi Antar Tabel</h2>
-    <ul>
-      <li>users → customers: One-to-One</li>
-      <li>users → sales: One-to-One</li>
-      <li>customers → transactions: One-to-Many</li>
-      <li>sales → transactions: Many-to-Many</li>
-      <li>motorcycles → transactions: One-to-Many</li>
-      <li>motorcycles → motorcycle_images: One-to-Many</li>
-      <li>orders → couriers: Many-to-One</li>
-    </ul>
-  </div>
+## Fitur Utama
 
-</body>
-</html>
+1. **Autentikasi Pengguna**  
+   Pengguna dapat mendaftar, login, dan logout.
+
+2. **Pengelolaan Produk**  
+   Admin dapat menambahkan, mengedit, dan menghapus data motor, serta menyembunyikan produk dari katalog jika stok tidak tersedia.
+
+3. **Pemesanan dan Pembelian Produk**  
+   Customer dapat melihat katalog motor, menambah ke keranjang, melakukan pemesanan, dan melacak status pesanan.
+
+4. **Manajemen Role Akses**  
+   Sistem mendukung tiga peran pengguna utama: Admin, Customer, dan Sales, masing-masing dengan hak akses yang berbeda.
+
+5. **Pencarian Produk**  
+   Customer dapat mencari motor berdasarkan nama, merk, atau kategori.
+
+6. **Laporan Penjualan**  
+   Admin dapat melihat riwayat transaksi, ringkasan pendapatan, dan status pengiriman.
+
+---
+
+## Struktur Tabel
+
+### A. Tabel `users`
+
+| Field           | Tipe Data                      | Deskripsi                                 |
+|----------------|--------------------------------|-------------------------------------------|
+| id             | BIGINT (Auto Increment)        | Primary key, ID unik pengguna             |
+| name           | VARCHAR(255)                   | Nama lengkap pengguna                     |
+| email          | VARCHAR(255)                   | Email unik untuk login                    |
+| phone          | VARCHAR(20)                    | Nomor HP pengguna (opsional)             |
+| address        | TEXT                           | Alamat pengguna (opsional)               |
+| password       | VARCHAR(255)                   | Password terenkripsi (bcrypt)             |
+| role           | ENUM('admin', 'sales', 'customer') | Peran pengguna dalam sistem          |
+| remember_token | VARCHAR(100)                   | Token untuk "remember me" saat login     |
+| created_at     | TIMESTAMP                      | Waktu data dibuat                         |
+| updated_at     | TIMESTAMP                      | Waktu data terakhir diubah                |
+
+### B. Tabel `motorcycles`
+
+| Field       | Tipe Data       | Deskripsi                             |
+|-------------|------------------|----------------------------------------|
+| id          | BIGINT           | Primary key                            |
+| merk        | VARCHAR(100)     | Merek motor                            |
+| tipe        | VARCHAR(100)     | Tipe/model motor                       |
+| tahun       | YEAR             | Tahun produksi                         |
+| warna       | VARCHAR(100)     | Warna motor                            |
+| harga       | DECIMAL(12,2)    | Harga motor                            |
+| stok        | INTEGER          | Jumlah stok tersedia                   |
+| deskripsi   | TEXT             | Deskripsi motor (opsional)            |
+| created_at  | TIMESTAMP        | Tanggal dibuat                         |
+| updated_at  | TIMESTAMP        | Tanggal diperbarui                     |
+
+### C. Tabel `customers`
+
+| Field        | Tipe Data        | Deskripsi                                 |
+|--------------|------------------|--------------------------------------------|
+| id           | BIGINT           | Primary key                                |
+| user_id      | BIGINT           | Relasi ke tabel `users`                    |
+| ktp_number   | VARCHAR(50)      | Nomor KTP                                  |
+| pekerjaan    | VARCHAR(100)     | Pekerjaan customer (opsional)              |
+| penghasilan  | DECIMAL(12,2)    | Penghasilan bulanan (opsional)             |
+| created_at   | TIMESTAMP        | Tanggal dibuat                             |
+| updated_at   | TIMESTAMP        | Tanggal diperbarui                         |
+
+### D. Tabel `sales`
+
+| Field        | Tipe Data        | Deskripsi                             |
+|--------------|------------------|----------------------------------------|
+| id           | BIGINT           | Primary key                            |
+| user_id      | BIGINT           | Relasi ke tabel `users`                |
+| kode_sales   | VARCHAR(20)      | Kode unik sales                        |
+| wilayah      | VARCHAR(100)     | Area penjualan                         |
+| created_at   | TIMESTAMP        | Tanggal dibuat                         |
+| updated_at   | TIMESTAMP        | Tanggal diperbarui                     |
+
+### E. Tabel `transactions`
+
+| Field         | Tipe Data                        | Deskripsi                          |
+|---------------|----------------------------------|-------------------------------------|
+| id            | BIGINT                           | Primary key                         |
+| customer_id   | BIGINT                           | Relasi ke tabel `customers`         |
+| sales_id      | BIGINT                           | Relasi ke tabel `sales`             |
+| motorcycle_id | BIGINT                           | Relasi ke tabel `motorcycles`       |
+| jumlah        | INTEGER                          | Jumlah unit dibeli                  |
+| total_harga   | DECIMAL(12,2)                    | Total harga                         |
+| status        | ENUM('pending', 'approved', 'cancelled') | Status transaksi         |
+| created_at    | TIMESTAMP                        | Tanggal dibuat                      |
+| updated_at    | TIMESTAMP                        | Tanggal diperbarui                  |
+
+### F. Tabel `motorcycle_images`
+
+| Field        | Tipe Data      | Deskripsi                         |
+|--------------|----------------|------------------------------------|
+| id           | BIGINT         | Primary key                        |
+| motorcycle_id| BIGINT         | Relasi ke tabel `motorcycles`      |
+| image_path   | VARCHAR(255)   | Path atau nama file gambar         |
+| created_at   | TIMESTAMP      | Tanggal dibuat                     |
+| updated_at   | TIMESTAMP      | Tanggal diperbarui                 |
+
+---
+
+## Relasi Antar Tabel
+
+1. **users → customers**: One-to-One  
+   Setiap pengguna dengan role customer memiliki satu data detail customer.
+
+2. **users → sales**: One-to-One  
+   Setiap pengguna dengan role sales memiliki satu data detail sales.
+
+3. **customers → transactions**: One-to-Many  
+   Satu customer dapat memiliki banyak transaksi pembelian.
+
+4. **sales → transactions**: One-to-Many  
+   Satu sales dapat melayani banyak transaksi.
+
+5. **motorcycles → transactions**: One-to-Many  
+   Satu motor bisa terlibat dalam banyak transaksi.
+
+6. **motorcycles → motorcycle_images**: One-to-Many  
+   Satu motor dapat memiliki banyak gambar.
+
+7. **users → logs**: One-to-Many  
+   Setiap user (customer, admin,) dapat memiliki banyak log aktivitas.
+
+
+---
